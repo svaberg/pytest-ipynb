@@ -97,7 +97,8 @@ class IPyNbCell(pytest.Item):
         self.cell_description = get_cell_description(self.cell.input)
 
     def runtest(self):
-        self.parent.runner.km.restart_kernel()
+        # must not restart kernel for each cell! (XXX: needs to be made configurable for those who want it to be restarted).
+        #self.parent.runner.km.restart_kernel()
 
         if self.parent.notebook_folder:
             self.parent.runner.kc.execute(
