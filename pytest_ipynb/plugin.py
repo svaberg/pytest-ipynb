@@ -57,11 +57,11 @@ def get_cell_description(cell_input):
     """
     try:
         first_line = cell_input.split("\n")[0]
-        if first_line.startswith(('"', '#', 'def')):
+        if first_line.startswith(('"', '#', 'def', '%')):
             return first_line.replace('"','').replace("#",'').replace('def ', '').replace("_", " ").strip()
     except:
         pass
-    return "no description"
+    return ""
 
 class IPyNbFile(pytest.File):
     def collect(self):
@@ -89,12 +89,19 @@ class IPyNbFile(pytest.File):
         self.runner.shutdown_kernel()
 
 class IPyNbCell(pytest.Item):
+
     def __init__(self, name, parent, cell_num, cell):
-        super(IPyNbCell, self).__init__(name, parent)
+
+        cell_description = get_cell_description(cell.input)
+        nodeid = parent.nodeid + "::" + f"cell {cell_num:2d}"
+        if cell_description: nodeid += " " + cell_description[0:40]
+
+        super(IPyNbCell, self).__init__(name, parent, nodeid=nodeid)
 
         self.cell_num = cell_num
         self.cell = cell
-        self.cell_description = get_cell_description(self.cell.input)
+        self.cell_description = cell_description
+
 
     def runtest(self):
         # must not restart kernel for each cell! (XXX: needs to be made configurable for those who want it to be restarted).
@@ -140,10 +147,3 @@ os.chdir("%s")""" % self.parent.notebook_folder)
             ])
         else:
             return "pytest plugin exception: %s" % str(excinfo.value)
-
-    def _makeid(self):
-        description = self.parent.nodeid + "::" + self.name
-        description += "::" + "cell %d" % self.cell_num
-        if self.cell_description:
-            description += ", " + self.cell_description
-        return description
