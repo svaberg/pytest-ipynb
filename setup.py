@@ -6,8 +6,8 @@ with open("README.rst") as f: long_description = f.read()
 def to_list(buffer): return list(filter(None, map(str.strip, buffer.splitlines())))
 
 requirements = to_list("""
-  ipython
-  nbformat
+  ipython-notebook>=4.0.0
+  nbformat>=4.0.0
   pytest
   runipy
 """)
