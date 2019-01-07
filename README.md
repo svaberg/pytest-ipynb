@@ -54,4 +54,4 @@ pip install git+https://github.com/stas00/pytest-ipynb.git
 ## Credits
 
 
-- This work is a fork of a no-longer maintained original  [pytest-ipynb](https://github.com/zonca/pytest-ipynb), by Andrea Zonca.
+- This work is a fork of a no-longer maintained original  [pytest-ipynb](https://github.com/zonca/pytest-ipynb), by Andrea Zonca. Original [article](http://zonca.github.io/2014/09/unit-tests-ipython-notebook.html)
