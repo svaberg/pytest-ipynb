@@ -1,7 +1,7 @@
 from setuptools import setup
 import os.path
 
-with open("README.rst") as f: long_description = f.read()
+with open("README.md") as f: long_description = f.read()
 
 def to_list(buffer): return list(filter(None, map(str.strip, buffer.splitlines())))
 
@@ -29,11 +29,12 @@ setup(
     # metadata for upload to PyPI
     author="Stas Bekman",
     author_email="stas@stason.org",
-    description="Use pytest's runner to discover and execute tests as cells of IPython notebooks",
+    description="Use pytest's runner to discover and execute tests as cells of ipython/jupyter notebooks",
     long_description=long_description,
+    long_description_content_type = "text/markdown",
     license="Apache License 2.0",
-    keywords="pytest test unittest ipython notebook",
-    url="http://github.com/zonca/pytest-ipynb",
+    keywords="pytest, test, unittest, ipython, jupyter, notebook",
+    url="http://github.com/stas00/pytest-ipynb",
     classifiers=[
         'Development Status :: 3 - Alpha',
         'Intended Audience :: Developers',

@@ -1,7 +1,10 @@
 # pytest-ipynb
 
-Plugin for `pytest` to run IPython notebooks as unit tests, relies on
-runipy to interface with the Notebook.
+Plugin for `pytest` to run ipython/jupyter notebooks as unit and integration tests.
+
+It allows you to put both `.py` and `.ipynb` test files inside your normal test suite.
+
+It currently relies on `runipy` to interface with the Notebook.
 
 Define unit tests in IPython notebook cells ([see example on
 nbviewer](http://nbviewer.ipython.org/github/stas00/pytest-ipynb/blob/master/examples/test_series_plots.ipynb)):
@@ -13,7 +16,6 @@ Run `py.test` to execute them:
 ![](https://github.com/stas00/pytest-ipynb/raw/master/img/pytest-ipynb_output.png)
 
 ## Example
-
 
 See the `examples/` folder or [a preview on
 nbviewer](http://nbviewer.ipython.org/github/stas00/pytest-ipynb/blob/master/examples/test_series_plots.ipynb).
